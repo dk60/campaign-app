@@ -17,11 +17,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'src')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'campaign-app')));
 
-app.use('/', require('./routes/index'));
-app.use('/api', require('./routes/apiLogin'))
+//app.use('/', require('./routes/index'));
+app.use('/api', require('./routes/apiLogin'));
 app.use('/api', require('./routes/apiCompaign'));
 app.use('/api', require('./routes/apiAudienceSegement'));
 app.use('/api', require('./routes/apiChannel'));

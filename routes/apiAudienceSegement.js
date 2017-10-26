@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var apiControllerRequest = require('../models/apiController');
 
-router.get('/', function(req,res){
+router.get('/getAudienceSegement', function(req,res){
     apiControllerRequest.getAudienceSegementData(function(err,rows){
         if(err)
         {
@@ -28,7 +28,7 @@ router.get('/:id?',function(req,res,next){
     }
 });
 router.post('/audienceSegement',function(req,res,next){
-    apiControllerRequest.insertAudienceSegementData(req.body,function(err,count){
+    apiControllerRequest.insertAudienceSegementData(req.body.params,function(err,count){
         if(err)
         {
             res.json(err);

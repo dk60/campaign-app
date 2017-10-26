@@ -1,0 +1,152 @@
+<div >
+<div>
+    <button id="setObject" type="button" class="btn btn-default" style="width: 160px;">1 Set Object</button>
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    <button id="setTargetAudience" type="button" class="btn btn-default" style="width: 160px;">2 Select Audience</button>
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    <button id="setConfigureChanel" type="button" class="btn btn-default" style="width: 160px;">3 Configure Chanel</button>
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    <button id="setActivateCompaign" type="button" class="btn btn-default" style="width: 160px;">4 Activate Compaign</button>
+</div>
+
+<br>
+<div ng-if="compaignSection" ng-init=getCategories()>
+    <div class="panel contain-page">
+        <h5>1 Chose Your Compaign Object</h5>
+    </div>
+    <div class="panel container-height contain-page">
+        <div class="row">
+            <div class="col-sm-4 ">
+              <table class="table">
+                <head>
+                  <tr>
+                    <th>Awarnes</th>
+                  </tr>
+                </head>
+                <tbody>
+                  <tr ng-repeat="data in obj.awarnes">
+                    <td style="cursor: pointer" ng-click="selectCompaign(data.awarnes)" ng-class="{selected : data.awarnes === compaignName}">{{data.awarnes}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table">
+                <head>
+                  <tr>
+                    <th>Consdrition</th>
+                  </tr>
+                </head>
+                <tbody>
+                  <tr ng-repeat="data in obj.consdrition">
+                    <td style="cursor: pointer" ng-click="selectCompaign(data.consdrition)" ng-class="{selected : data.consdrition === compaignName}">{{data.consdrition}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <label></label>
+            </div>
+            <div class="col-sm-4">
+              <table class="table">
+                <head>
+                  <tr>
+                    <th>Converstion</th>
+                  </tr>
+                </head>
+                <tbody>
+                  <tr ng-repeat="data in obj.converstion">
+                    <td style="cursor: pointer" ng-click="selectCompaign(data.converstion)" ng-class="{selected : data.converstion === compaignName}">{{data.converstion}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="col-xs-offset-3">
+            <div class="col-sm-7">
+                <h3 class="text-center">{{compaignName}}</h3>
+                <div class="col-sm-6">
+                    <label class="pull-right">Compaign Name: </label>
+                </div>
+                <div class="col-sm-6" style="padding-left: 0px;">
+                    <input type="text" name="" class="form-control" ng-model="compaign" placeholder="Give a name your company"><br>
+                    <button type="button" class="btn btn-primary pull-left" ng-show="compaignSelectValid && compaign" ng-click="compaignCreate()">Continue</button>
+                    <button type="button" class="btn btn-primary pull-left" ng-hide="compaignSelectValid && compaign">Continue</button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+<div  ng-if="audienceSegementSection">
+    <div class="panel contain-page">
+        <h5>2 Select Your Compaign Target Audience</h5>
+    </div>
+    <br>
+    <div class="panel container-height contain-page" style="padding-top: 10px;">
+        <h4 class="pull-left">Saved Audience Segement</h4>
+        <button type="button" class="btn btn-primary pull-right" ng-click="newSegementCreate()">Create New Segement</button>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Segement Name</th>
+                  <th>Segement Type</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="segementData in audienceSegementData">
+                <td>
+                    <input type="checkbox" class="custom-control-input">  {{segementData.segement_name}}
+                </td>
+                <td>{{segementData.segment_form_data}}</td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="col-xs-offset-5" style="padding-top: 20px">
+            <button type="button" class="btn btn-primary" ng-click="savedAudienceSegement()">Continue</button>
+        </div>
+    </div>
+</div>
+<div ng-if="newSegementCreateForm">
+  <div class="panel panel-heading">
+        <h5>Create New Segement</h5>
+    </div>
+    <br>
+    <div class="panel container-height contain-page">
+    <div class="col-sm-8">
+        <h5>Available Audience Dashboard</h5>
+        <hr>
+        <form>
+            <label>Segement Name</label>
+            <input type="text" class="form-control" name="" ng-model=segment.segement_name>
+            <label>Segement Type</label>
+            <input type="text" class="form-control" name="" ng-model=segment.segment_form_data>
+        </form>
+    </div>
+    <div class="col-sm-4">
+      <h5>Total Targetable Available</h5>
+        <hr>
+    </div>
+    <hr>
+    <div class="pull-right">
+        <button class="btn btn-default" type="button" ng-click="audienceCancel()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="savedAudience(segment)">Save Audience</button> 
+    </div>
+</div>
+</div>
+<div  ng-if="compaignActivate">
+    <div class="panel contain-page">
+        <h5>Compaign Activated</h5>
+    </div>
+    <br>
+    <div class="panel container-height contain-page">
+        <div class="col-xs-offset-5">
+            <h3>Congratulation</h3>
+            <button type="button" class="btn btn-primary" ng-click="backToDashboard()">Back to Dashboard</button>
+                <button type="button" class="btn btn-default" ng-click="createNewCompaign()">Create New Compaign</button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    
+ 
