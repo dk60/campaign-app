@@ -1,18 +1,22 @@
-app.controller('LoginController',['$scope','loginService', 'API_URL', '$window', function($scope, loginService, API_URL, $window) {
+app.controller('LoginController',['$scope','$rootScope','loginService', '$window','$location', function($scope, $rootScope, loginService, $window,$location) {
 
 	$scope.userLogin = function(user){
-		var params = {
-            method: 'Post',
-            url: API_URL.User_Login,
-            params : user
-        }
-
         return loginService.userLogin(user).then(function(response, status) {
-        	if (response.data.length) {
-        		$window.location.href = 'http://localhost:8081';
+        	if (response.data) {
+                $location.path("/compaign");
+
+                $window.localStorage['accessToken']= response.data.accessToken;
+                var email = response.data;
+                $rootScope.currentUser = email.data;
         	}else{
         		alert('Invalid id..');
         	}
         });
-	}
+	};
+    $rootScope.logout = function(){
+        $window.localStorage['accessToken']= undefined;
+        $location.path("/login");
+        $rootScope.currentUser = false;
+    };
+
 }])

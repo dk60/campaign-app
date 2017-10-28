@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 
 var app = express();
 
@@ -18,6 +19,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'campaign-app')));
+
+app.use(function (req, res, next) {
+
+    let reqUrl = req.originalUrl;
+    reqUrl = reqUrl.split("?")[0];
+
+    if (reqUrl == '/api/login') {
+          return next();
+      }
+
+    var token = req.query.token;
+    
+    if (token) {
+        next();
+    } else {
+        return res.json({
+          status: false,
+          errorCode: 401,
+          message: "token not available"
+        });
+    }
+})
 
 //app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/apiLogin'));
