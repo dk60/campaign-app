@@ -13,6 +13,10 @@ var APIsData={
             return dbConnect.query("select * from channel",callback);
             dbConnect.end();
         },
+        postChannel: function(paramsData, callback){
+            return dbConnect.query("insert into channel set?", paramsData, callback);
+            dbConnect.end();
+        },
         getAudienceSegementData:function(callback){
             return dbConnect.query("select * from new_segement",callback);
             dbConnect.end();
@@ -22,7 +26,7 @@ var APIsData={
             dbConnect.end();
         },
         insertAudienceSegementData:function(paramsData, callback){
-            return dbConnect.query("INSERT INTO new_segement set ? ", paramsData  ,callback);
+            return dbConnect.query("INSERT INTO new_segement set? ", paramsData  ,callback);
             dbConnect.end();
         },
         deleteAudienceSegementData:function(id, callback){

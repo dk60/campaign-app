@@ -29,12 +29,13 @@ app.use(function (req, res, next) {
           return next();
       }
 
-    var token = req.query.token;
+    var token = req.query.token || req.body.params.token;
     
     if (token) {
         next();
     } else {
         return res.json({
+          data : [],
           status: false,
           errorCode: 401,
           message: "token not available"

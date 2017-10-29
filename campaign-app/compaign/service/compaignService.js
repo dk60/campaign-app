@@ -1,17 +1,20 @@
 app.service('compaignService', function ($rootScope, $http, BaseURL,$window) {
     
    var params = {};
-   params.token = $window.localStorage.accessToken;
+    var token = $window.localStorage.accessToken;
+    var userId = $window.localStorage.userId;
 
 
     this.getCategories = function () {
+        params.token = token;
         var promise = $http.get(BaseURL + 'getCompaign', {params} ).then(function(response) {
-                return response;
+                return response.data;
             });
             return promise;
         };
 
     this.getAudienceSegement = function () {
+        params.token = token;
         var promise = $http.get(BaseURL + 'getAudienceSegement', {params} ).then(function(response) {
                 return response;
             });
@@ -19,6 +22,7 @@ app.service('compaignService', function ($rootScope, $http, BaseURL,$window) {
         };
 
     this.postAudienceSegement = function (params) {
+        params.token = token;
         var promise = $http.post(BaseURL + 'audienceSegement', {params : params} ).then(function(response) {
                 return response;
             });

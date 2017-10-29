@@ -1,10 +1,10 @@
 <div >
 <div>
     <button id="setObject" type="button" class="btn btn-default" style="width: 160px;">1 Set Object</button>
-      <span class="glyphicon glyphicon-arrow-right"></span>
-    <button id="setTargetAudience" type="button" class="btn btn-default" style="width: 160px;">2 Select Audience</button>
-      <span class="glyphicon glyphicon-arrow-right"></span>
+      <span class="glyphicon glyphicon-arrow-right"></span>    
     <button id="setConfigureChanel" type="button" class="btn btn-default" style="width: 160px;">3 Configure Chanel</button>
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    <button id="setTargetAudience" type="button" class="btn btn-default" style="width: 160px;">2 Select Audience</button>      
       <span class="glyphicon glyphicon-arrow-right"></span>
     <button id="setActivateCompaign" type="button" class="btn btn-default" style="width: 160px;">4 Activate Compaign</button>
 </div>
@@ -76,9 +76,58 @@
         </div>
     </div>
 </div>
+<div  ng-if="compaignChanelSection" ng-init="getCompaignChanel()">
+    <div class="panel contain-page">
+        <h5>2 Add marketing Chaneles to your compaign</h5>
+    </div>
+    <br>
+    <div class="panel container-height contain-page" style="padding-top: 10px;">
+        <h4 class="pull-left">Compaign Chanel</h4>
+        <button type="button" class="btn btn-primary pull-right" ng-click="newChanel()">Add Chanel</button>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th>Chanel Name</th>                 
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="chenel in compaignChenel">
+                  <td>{{chenel.channel_name}}</td>
+                  <td>{{chenel.create_date}}</td>
+                  <td>{{chenel.update_date}}</td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="col-xs-offset-5" style="padding-top: 20px">
+            <button type="button" class="btn btn-primary" ng-click="savedCompaignChanel()">Continue</button>
+        </div>
+    </div>
+</div>
+
+<div  ng-if="newCompaignChanelSection">
+    <div class="panel contain-page">
+        <h5>2 Add marketing Chaneles to your compaign</h5>
+    </div>
+    <br>
+    <div class="panel container-height contain-page" style="padding-top: 10px;">
+        <h4 class="pull-left">Compaign Chanel</h4>
+          <form>
+              <label>Chanel Name</label>
+              <input type="text" name="chenelName" ng-model="chenel.channel_name">
+          </form>
+        
+        <div class="col-xs-offset-5" style="padding-top: 20px">
+            <button type="button" class="btn btn-primary" ng-click="createNewCompaignChanel(chenel)">Continue</button>
+        </div>
+    </div>
+</div>
+
 <div  ng-if="audienceSegementSection">
     <div class="panel contain-page">
-        <h5>2 Select Your Compaign Target Audience</h5>
+        <h5>3 Select Your Compaign Target Audience</h5>
     </div>
     <br>
     <div class="panel container-height contain-page" style="padding-top: 10px;">

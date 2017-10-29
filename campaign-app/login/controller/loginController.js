@@ -6,17 +6,18 @@ app.controller('LoginController',['$scope','$rootScope','loginService', '$window
                 $location.path("/compaign");
 
                 $window.localStorage['accessToken']= response.data.accessToken;
-                var email = response.data;
-                $rootScope.currentUser = email.data;
+                $window.localStorage['userId'] = response.data.data.user_id;
+                var userData = response.data;
+                $rootScope.currentUser = userData.data;
         	}else{
         		alert('Invalid id..');
         	}
         });
 	};
     $rootScope.logout = function(){
-        $window.localStorage['accessToken']= undefined;
+        $window.localStorage.clear();
         $location.path("/login");
         $rootScope.currentUser = false;
     };
 
-}])
+}]);
