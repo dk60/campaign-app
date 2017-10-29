@@ -21,9 +21,11 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
         document.getElementById("setObject").style.background = "#b0e2e5";        
         $scope.compaignSection = false;
         $scope.compaignChanelSection =true;
+    };
 
+    $scope.getAudienceSegement = function(){
         return compaignFactory.getAudienceSegement().then(function(response, status){
-            $scope.audienceSegementData = response.data;
+            $scope.audienceSegementData = response;
         })
     };
 
@@ -97,5 +99,9 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
             $scope.newCompaignChanelSection = false;
         });
     };
+
+    $scope.slideChange = function(select){
+
+    }
 
 }]);

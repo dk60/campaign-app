@@ -1,4 +1,4 @@
- app.factory('compaignFactory',['compaignService', function(compaignService){
+ app.factory('compaignFactory',['compaignService','$filter', function(compaignService, $filter){
 	var dataFactory = {};
 
 		dataFactory.getCategories= function(){
@@ -31,11 +31,19 @@
 		};
 		dataFactory.getAudienceSegement= function(){
 			return compaignService.getAudienceSegement().then(function(response) {
-				return response;
+				return response.data;
 			})
 		};
 		dataFactory.postAudienceSegement = function(segment){
-			return compaignService.postAudienceSegement(segment).then(function(response) {
+			var date = $filter('date')(new Date(), 'dd/MM/yyyy');
+			var params = {
+		            segement_name : segment.segement_name,
+		            segment_form_data : segment.segment_form_data,
+		            create_date : date,
+		            update_date : date,
+		            status : true
+		        }
+			return compaignService.postAudienceSegement(params).then(function(response) {
 				return response;
 			})
 		};

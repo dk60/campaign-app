@@ -20,12 +20,4 @@ app.service('compaignChanelService', function ($rootScope, $http, BaseURL,$windo
             });
             return promise;
         };
-
-    // this.postAudienceSegement = function (params) {
-    //     var promise = $http.post(BaseURL + 'audienceSegement', {params : params} ).then(function(response) {
-    //             return response;
-    //         });
-    //         return promise;
-    //     };
-
 });

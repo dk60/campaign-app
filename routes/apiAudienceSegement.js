@@ -10,7 +10,11 @@ router.get('/getAudienceSegement', function(req,res){
         }
         else
         {
-        res.json(rows);
+        res.json({
+            data : rows,
+            code: 200,
+            status: "Success",
+            message: "API Successful"});
         }
     })
 })
@@ -28,7 +32,15 @@ router.get('/:id?',function(req,res,next){
     }
 });
 router.post('/audienceSegement',function(req,res,next){
-    apiControllerRequest.insertAudienceSegementData(req.body.params,function(err,count){
+    var segement ={
+        user_id : req.body.params.userId,
+        segement_name : req.body.params.segement_name,
+        segment_form_data : req.body.params.segment_form_data,
+        create_date : req.body.params.create_date,
+        update_date : req.body.params.update_date,
+        status : req.body.params.status
+    }
+    apiControllerRequest.insertAudienceSegementData(segement,function(err,count){
         if(err)
         {
             res.json(err);

@@ -1,12 +1,12 @@
 <div >
 <div>
-    <button id="setObject" type="button" class="btn btn-default" style="width: 160px;">1 Set Object</button>
+    <button id="setObject" type="button" class="btn btn-default" style="width: 160px;" ng-click="slideChange()">1 Set Object</button>
       <span class="glyphicon glyphicon-arrow-right"></span>    
-    <button id="setConfigureChanel" type="button" class="btn btn-default" style="width: 160px;">3 Configure Chanel</button>
+    <button id="setConfigureChanel" type="button" class="btn btn-default" style="width: 160px;" ng-click="slideChange()">3 Configure Chanel</button>
       <span class="glyphicon glyphicon-arrow-right"></span>
-    <button id="setTargetAudience" type="button" class="btn btn-default" style="width: 160px;">2 Select Audience</button>      
+    <button id="setTargetAudience" type="button" class="btn btn-default" style="width: 160px;" ng-click="slideChange()">2 Select Audience</button>      
       <span class="glyphicon glyphicon-arrow-right"></span>
-    <button id="setActivateCompaign" type="button" class="btn btn-default" style="width: 160px;">4 Activate Compaign</button>
+    <button id="setActivateCompaign" type="button" class="btn btn-default" style="width: 160px;" ng-click="slideChange()">4 Activate Compaign</button>
 </div>
 
 <br>
@@ -125,7 +125,7 @@
     </div>
 </div>
 
-<div  ng-if="audienceSegementSection">
+<div  ng-if="audienceSegementSection" ng-init="getAudienceSegement()">
     <div class="panel contain-page">
         <h5>3 Select Your Compaign Target Audience</h5>
     </div>

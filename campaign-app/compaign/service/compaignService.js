@@ -16,14 +16,14 @@ app.service('compaignService', function ($rootScope, $http, BaseURL,$window) {
     this.getAudienceSegement = function () {
         params.token = token;
         var promise = $http.get(BaseURL + 'getAudienceSegement', {params} ).then(function(response) {
-                return response;
+                return response.data;
             });
             return promise;
         };
 
     this.postAudienceSegement = function (params) {
         params.token = token;
-        var promise = $http.post(BaseURL + 'audienceSegement', {params : params} ).then(function(response) {
+        var promise = $http.post(BaseURL + 'audienceSegement', {params} ).then(function(response) {
                 return response;
             });
             return promise;
