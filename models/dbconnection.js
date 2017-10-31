@@ -1,7 +1,7 @@
 var mysql=require('mysql');
-var connection=mysql.createPool({
+var connection=mysql.createConnection({
 
-    host: '182.50.133.77:3306',
+    host: '182.50.133.77',
     user: 'compaign',
     password: 'compaign@123',
     database: 'compaign_db'
