@@ -9,6 +9,8 @@ var APIsData={
             return dbConnect.query("select * from master_compaign_objective left join objective on master_compaign_objective.obj_Id = objective.objective_id",callback);
             dbConnect.end();
         },
+
+        // cpmpaign chanel section start
         getChannel:function(callback){
             return dbConnect.query("select * from channel",callback);
             dbConnect.end();
@@ -17,6 +19,16 @@ var APIsData={
             return dbConnect.query("insert into channel set?", paramsData, callback);
             dbConnect.end();
         },
+        editChanel: function(paramsData, callback){
+            return dbConnect.query("update channel set? where channel_id=?", [paramsData , paramsData.channel_id], callback);
+            dbConnect.end();
+        },
+        deleteChanel: function(paramsData, callback){
+            return dbConnect.query("delete from channel where channel_id=?", [paramsData.channel_id], callback);
+            dbConnect.end();
+        },
+        // cpmpaign chanel section end
+
         getAudienceSegementData:function(callback){
             return dbConnect.query("select * from new_segement",callback);
             dbConnect.end();

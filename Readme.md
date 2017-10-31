@@ -9,5 +9,6 @@ Make sure you have installed.
 
 ## Run
 * node app.js
+* node --inspect --debug-brk app.js
 
 Our app is running on http://localhost:8081

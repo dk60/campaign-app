@@ -20,4 +20,21 @@ app.service('compaignChanelService', function ($rootScope, $http, BaseURL,$windo
             });
             return promise;
         };
+    this.editCompaignChenel = function(params){
+        params.token = token;
+        params.userId = userId;
+        var promise = $http.post(BaseURL + 'editCompaignChannel', {params} ).then(function(response) {
+                return response;
+            });
+            return promise;
+        };
+
+    this.deleteCompaignChenel = function(params){
+        params.token = token;
+        params.userId = userId;
+        var promise = $http.post(BaseURL + 'deleteCompaignChannel', {params} ).then(function(response) {
+                return response;
+            });
+            return promise;
+        };
 });

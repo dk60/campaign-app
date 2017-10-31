@@ -20,6 +20,17 @@
 			})
 			}
 		};
+		dataFactory.editCompaignChenel = function(params){
+        return compaignChanelService.editCompaignChenel(params).then(function(response, status){
+            	return response.data;
+	        });
+	    };
+
+	    dataFactory.deleteCompaignChenel = function(params){
+	        return compaignChanelService.deleteCompaignChenel(params).then(function(response,status){
+	            return response.data;
+	        });
+	    };
 		
 		return dataFactory;
  }]);

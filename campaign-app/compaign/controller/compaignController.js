@@ -100,6 +100,18 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
         });
     };
 
+    $scope.editCompaignChenel = function(chenel){
+        return compaignChanelFactory.editCompaignChenel(chenel).then(function(response, status){
+            $scope.getCompaignChanel();
+        });
+    };
+
+    $scope.deleteCompaignChenel = function(chenel){
+        return compaignChanelFactory.deleteCompaignChenel(chenel).then(function(response,status){
+            $scope.dk = response;
+        });
+    };
+
     $scope.slideChange = function(select){
 
     }

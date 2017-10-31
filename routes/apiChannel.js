@@ -34,4 +34,36 @@ router.post('/addNewChannel', function(req,res){
     })
 });
 
+router.post('/editCompaignChannel', function(req,res){
+    var chanelUpdate ={
+        channel_id : req.body.params.channel_id,
+        channel_name : req.body.params.channel_name,
+        update_date : req.body.params.update_date
+    }
+    apiControllerRequest.editChanel(chanelUpdate, function(err, rows){
+        if(err)
+        {
+        res.json(err);
+        }
+        else
+        {
+        res.json(rows);
+        }
+    });
+});
+
+router.post('/deleteCompaignChannel',function(req,res){
+    //var chanelID = req.body.params.channel_id;
+    apiControllerRequest.deleteChanel(req.body.params ,function(err, rows){
+        if(err)
+        {
+        res.json(err);
+        }
+        else
+        {
+        res.json(rows);
+        }
+    });
+});
+
 module.exports = router;
