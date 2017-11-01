@@ -13,7 +13,7 @@
 		            segment_form_data : segment.segment_form_data,
 		            create_date : date,
 		            update_date : date,
-		            status : true
+		            status : 1
 		        }
 			return audienceService.postAudienceSegement(params).then(function(response) {
 				return response;

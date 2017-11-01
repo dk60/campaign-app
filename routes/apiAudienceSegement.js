@@ -10,7 +10,7 @@ router.get('/getAudienceSegement', function(req,res){
         }
         else
         {
-        res.json({
+        res.send({
             data : rows,
             code: 200,
             status: "Success",

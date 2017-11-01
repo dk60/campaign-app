@@ -18,10 +18,15 @@ router.post('/login', function(req,res){
                  var token = jwt.sign(user.email_id, config.tokenSecret);
 
                  var result = {
-                    data : user,
+                    email_id : user.email_id,
+                    user_id : user.user_id,
                     accessToken : token
                  }
-                res.json(result);
+                res.json({
+                        data : result,
+                        code: 200,
+                        status: "Success",
+                        message: "API Successful"});
             }
         })
     }

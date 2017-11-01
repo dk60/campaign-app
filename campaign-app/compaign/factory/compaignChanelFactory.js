@@ -13,7 +13,7 @@
 		            channel_name : chenel.channel_name,
 		            create_date : date,
 		            update_date : date,
-		            status : true
+		            status : 1
 		        }
 			return compaignChanelService.postCompaignChanel(params).then(function(response) {
 				return response.data;

@@ -2,13 +2,12 @@ app.controller('LoginController',['$scope','$rootScope','loginService', '$window
 
 	$scope.userLogin = function(user){
         return loginService.userLogin(user).then(function(response, status) {
-        	if (response.data) {
+        	if (response.data.email_id) {
                 $location.path("/compaign");
 
                 $window.localStorage['accessToken']= response.data.accessToken;
-                $window.localStorage['userId'] = response.data.data.user_id;
-                var userData = response.data;
-                $rootScope.currentUser = userData.data;
+                $window.localStorage['userId'] = response.data.user_id;
+                $rootScope.currentUser = response.data;
         	}else{
         		alert('Invalid id..');
         	}

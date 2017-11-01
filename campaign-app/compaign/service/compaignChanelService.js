@@ -7,7 +7,7 @@ app.service('compaignChanelService', function ($rootScope, $http, BaseURL,$windo
     this.getChanel = function () {
         params.token = token;
         var promise = $http.post(BaseURL + 'getCompaignChannel', {params} ).then(function(response) {
-                return response;
+                return response.data;
             });
             return promise;
         };

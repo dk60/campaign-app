@@ -10,7 +10,11 @@ router.post('/getCompaignChannel', function(req,res){
         }
         else
         {
-        res.json(rows);
+        res.json({
+                data : rows,
+                code: 200,
+                status: "Success",
+                message: "API Successful"});
         }
     })
 });
