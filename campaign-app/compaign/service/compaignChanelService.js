@@ -7,7 +7,7 @@ app.service('compaignChanelService', function ($rootScope, $http, BaseURL,$windo
     this.getChanel = function () {
         params.token = token;
         var promise = $http.post(BaseURL + 'getCompaignChannel', {params} ).then(function(response) {
-                return response;
+                return response.data;
             });
             return promise;
         };
@@ -16,6 +16,23 @@ app.service('compaignChanelService', function ($rootScope, $http, BaseURL,$windo
         params.token = token;
         params.userId = userId;
         var promise = $http.post(BaseURL + 'addNewChannel', {params} ).then(function(response) {
+                return response;
+            });
+            return promise;
+        };
+    this.editCompaignChenel = function(params){
+        params.token = token;
+        params.userId = userId;
+        var promise = $http.post(BaseURL + 'editCompaignChannel', {params} ).then(function(response) {
+                return response;
+            });
+            return promise;
+        };
+
+    this.deleteCompaignChenel = function(params){
+        params.token = token;
+        params.userId = userId;
+        var promise = $http.post(BaseURL + 'deleteCompaignChannel', {params} ).then(function(response) {
                 return response;
             });
             return promise;

@@ -10,7 +10,7 @@ router.get('/getAudienceSegement', function(req,res){
         }
         else
         {
-        res.json({
+        res.send({
             data : rows,
             code: 200,
             status: "Success",
@@ -20,7 +20,7 @@ router.get('/getAudienceSegement', function(req,res){
 })
 router.get('/:id?',function(req,res,next){
     if(req.params.id){
-        apiControllerRequest.getAudienceSegementById(req.params.id,function(err,rows){
+        apiControllerRequest.getAudienceSegementById(req.body.params.id,function(err,rows){
         if(err)
         {
             res.json(err);
@@ -50,20 +50,25 @@ router.post('/audienceSegement',function(req,res,next){
         }
     });
 });
-router.delete('/audienceSegement/:id',function(req,res,next){
-    apiControllerRequest.deleteAudienceSegementData(req.params.id,function(err,count){
+router.post('/editAudienceSegement',function(req,res,next){
+    var audienceSegement ={
+        seg_id : req.body.params.seg_id,
+        segement_name : req.body.params.segement_name,
+        segment_form_data : req.body.params.segment_form_data
+    }
+    apiControllerRequest.updateAudienceSegementData(audienceSegement,function(err,count){
         if(err)
         {
             res.json(err);
         }
         else
         {
-            res.json(count);//or return count for 1 &amp;amp;amp; 0
+            res.json(rows);
         }
     });
 });
-router.put('/audienceSegement/:id',function(req,res,next){
-    apiControllerRequest.updateAudienceSegementData(req.params.id,req.body,function(err,rows){
+router.post('/deleteAudienceSegement',function(req,res,next){
+    apiControllerRequest.deleteAudienceSegementData(req.body.params.seg_id,function(err,rows){
         if(err)
         {
             res.json(err);

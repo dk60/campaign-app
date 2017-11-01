@@ -91,6 +91,8 @@
                   <th>Start Date</th>
                   <th>End Date</th>
                   <th>Status</th>
+                  <th>Edit</th>
+                  <th>Update</th>
                 </tr>
             </thead>
             <tbody>
@@ -98,6 +100,13 @@
                   <td>{{chenel.channel_name}}</td>
                   <td>{{chenel.create_date}}</td>
                   <td>{{chenel.update_date}}</td>
+                  <td>{{chenel.status}}</td>
+                  <td>
+                      <button ng-click="editCompaignChenel(chenel)">Edit</button>
+                  </td>
+                  <td>
+                      <button ng-click="deleteCompaignChenel(chenel)">Delete</button>
+                  </td>
               </tr>
             </tbody>
         </table>
@@ -146,6 +155,12 @@
                     <input type="checkbox" class="custom-control-input">  {{segementData.segement_name}}
                 </td>
                 <td>{{segementData.segment_form_data}}</td>
+                <td>
+                    <button ng-click="editAudienceSegement(segementData)">Edit</button>
+                </td>
+                <td>
+                    <button ng-click="deleteAudienceSegement(segementData)">Delete</button>
+                </td>
               </tr>
             </tbody>
         </table>
