@@ -1,5 +1,5 @@
 
-app.controller('CompaignController',['$scope','compaignFactory','compaignChanelFactory', function($scope, compaignFactory, compaignChanelFactory ) {
+app.controller('CompaignController',['$scope','compaignFactory','compaignChanelFactory','audienceFactory', function($scope, compaignFactory, compaignChanelFactory, audienceFactory ) {
 
     $scope.headingTitle = 'App Start';
 	
@@ -23,8 +23,11 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
         $scope.compaignChanelSection =true;
     };
 
+    //audienc segement section start
+
+
     $scope.getAudienceSegement = function(){
-        return compaignFactory.getAudienceSegement().then(function(response, status){
+        return audienceFactory.getAudienceSegement().then(function(response, status){
             $scope.audienceSegementData = response;
         })
     };
@@ -56,11 +59,23 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
         $scope.newSegementCreateForm = true;
     }
     $scope.savedAudience = function(segment){
-        return compaignFactory.postAudienceSegement(segment).then(function(response, status){
+        return audienceFactory.postAudienceSegement(segment).then(function(response, status){
             alert('SuccessFully Add..');
             $scope.newSegementCreateForm = false;
             $scope.audienceSegementSection = true;
         })
+    };
+
+    $scope.editAudienceSegement = function(chenel){
+        return audienceFactory.editAudienceSegement(chenel).then(function(response, status){
+            $scope.getAudienceSegement();
+        });
+    };
+
+    $scope.deleteAudienceSegement = function(chenel){
+        return audienceFactory.deleteAudienceSegement(chenel).then(function(response,status){
+            $scope.getAudienceSegement();
+        });
     };
 
     $scope.audienceCancel = function(){
@@ -72,7 +87,9 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
     	$scope.obj = '';
     };
 
-    //compaign chanel section
+    //audienc segement section end
+
+    //compaign chanel section start
 
     $scope.getCompaignChanel = function(params){
         document.getElementById("setConfigureChanel").style.color = "#5e92e5";
@@ -108,7 +125,7 @@ app.controller('CompaignController',['$scope','compaignFactory','compaignChanelF
 
     $scope.deleteCompaignChenel = function(chenel){
         return compaignChanelFactory.deleteCompaignChenel(chenel).then(function(response,status){
-            $scope.dk = response;
+            $scope.getCompaignChanel();
         });
     };
 

@@ -154,6 +154,12 @@
                     <input type="checkbox" class="custom-control-input">  {{segementData.segement_name}}
                 </td>
                 <td>{{segementData.segment_form_data}}</td>
+                <td>
+                    <button ng-click="editAudienceSegement(segementData)">Edit</button>
+                </td>
+                <td>
+                    <button ng-click="deleteAudienceSegement(segementData)">Delete</button>
+                </td>
               </tr>
             </tbody>
         </table>

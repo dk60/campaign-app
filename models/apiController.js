@@ -29,6 +29,8 @@ var APIsData={
         },
         // cpmpaign chanel section end
 
+
+        // cpmpaign audience segement section start
         getAudienceSegementData:function(callback){
             return dbConnect.query("select * from new_segement",callback);
             dbConnect.end();
@@ -45,13 +47,15 @@ var APIsData={
             return dbConnect.query("delete from new_segement where seg_id=?", [id], callback);
             dbConnect.end();
         },
-        updateAudienceSegementData:function(id, paramsData, callback){
-            return dbConnect.query("update new_segement set ? where seg_id=?",[paramsData , id], callback);
+        updateAudienceSegementData:function(paramsData, callback){
+            return dbConnect.query("update new_segement set ? where seg_id=?",[paramsData , paramsData.seg_id], callback);
             dbConnect.end();
         },
         addNewCompaign: function(paramsData, callback){
             return dbConnect.query("insert into campaign set? ", paramsData, callback)
             dbConnect.end();
         },
+
+        // cpmpaign audience segement section end
 };
 module.exports= APIsData;
