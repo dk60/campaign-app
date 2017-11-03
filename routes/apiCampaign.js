@@ -4,7 +4,6 @@ var apiControllerRequest = require('../models/apiController');
 
 
 router.get('/getCampaign', function(req,res){
-    console.log("req c,apaigndi",req.originalUrl);
     apiControllerRequest.getCampaign(function(err,rows){
         if(err)
         {

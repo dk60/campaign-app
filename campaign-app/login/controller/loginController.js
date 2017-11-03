@@ -2,7 +2,7 @@ app.controller('LoginController',['$scope','$rootScope','loginService', '$window
 
 	$scope.userLogin = function(user){
         return loginService.userLogin(user).then(function(response, status) {
-        	if (response.data.email_id) {
+        	if (response.status) {
                 $location.path("/campaign");
 
                 $window.localStorage['accessToken']= response.data.accessToken;

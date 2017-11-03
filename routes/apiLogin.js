@@ -7,9 +7,13 @@ var config = require('../configuration/appConfig').config;
 router.post('/login', function(req,res){
     if(req.body.params){
         apiControllerRequest.userLogin(req.body.params, function(err,rows){
-            if(err)
+            if(!rows[0])
             {
-                res.json(err);
+                res.json({
+                        data : [],
+                        code: 500,
+                        status: false,
+                        message: "API Not Successful"});
             }
             else
             {
@@ -25,7 +29,7 @@ router.post('/login', function(req,res){
                 res.json({
                         data : result,
                         code: 200,
-                        status: "Success",
+                        status: true,
                         message: "API Successful"});
             }
         })

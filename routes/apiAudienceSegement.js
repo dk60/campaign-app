@@ -18,19 +18,19 @@ router.get('/getAudienceSegement', function(req,res){
         }
     })
 })
-router.get('/:id?',function(req,res,next){
-    if(req.params.id){
-        apiControllerRequest.getAudienceSegementById(req.body.params.id,function(err,rows){
-        if(err)
-        {
-            res.json(err);
-        }
-        else{
-            res.json(rows);
-        }
-        });
-    }
-});
+// router.get('/:id?',function(req,res,next){
+//     if(req.params.id){
+//         apiControllerRequest.getAudienceSegementById(req.body.params.id,function(err,rows){
+//         if(err)
+//         {
+//             res.json(err);
+//         }
+//         else{
+//             res.json(rows);
+//         }
+//         });
+//     }
+// });
 router.post('/audienceSegement',function(req,res,next){
     var segement ={
         user_id : req.body.params.userId,
