@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var apiControllerRequest = require('../models/apiController');
 
-router.post('/getCompaignChannel', function(req,res){
+router.post('/getCampaignChannel', function(req,res){
     apiControllerRequest.getChannel(function(err,rows){
         if(err)
         {
@@ -38,7 +38,7 @@ router.post('/addNewChannel', function(req,res){
     })
 });
 
-router.post('/editCompaignChannel', function(req,res){
+router.post('/editCampaignChannel', function(req,res){
     var chanelUpdate ={
         channel_id : req.body.params.channel_id,
         channel_name : req.body.params.channel_name,
@@ -56,7 +56,7 @@ router.post('/editCompaignChannel', function(req,res){
     });
 });
 
-router.post('/deleteCompaignChannel',function(req,res){
+router.post('/deleteCampaignChannel',function(req,res){
     //var chanelID = req.body.params.channel_id;
     apiControllerRequest.deleteChanel(req.body.params ,function(err, rows){
         if(err)
