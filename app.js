@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
 
 //app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/apiLogin'));
-app.use('/api', require('./routes/apiCompaign'));
+app.use('/api', require('./routes/apiCampaign'));
 app.use('/api', require('./routes/apiAudienceSegement'));
 app.use('/api', require('./routes/apiChannel'));
 
