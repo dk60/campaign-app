@@ -170,27 +170,65 @@
     </div>
 </div>
 <div ng-if="newSegementCreateForm">
-  <div class="panel panel-heading">
+  <div class="panel panel-heading" ng-init="getCustomSegmentsFields()">
         <h5>Create New Segement</h5>
     </div>
     <br>
-    <div class="panel container-height contain-page">
-    <div class="col-sm-8">
+    <div class="panel container-height contain-page" ng-init="getCustomNewSegments()">
+    <div class="col-sm-4">
         <h5>Available Audience Dashboard</h5>
         <hr>
-        <form>
+        <!-- <form>
             <label>Segement Name</label>
             <input type="text" class="form-control" name="" ng-model=segment.segement_name>
             <label>Segement Type</label>
             <input type="text" class="form-control" name="" ng-model=segment.segment_form_data>
-        </form>
+        </form> -->
+        <table>
+          <tbody>
+            <tr ng-repeat="customField in customFormFields">
+              <td>{{customField.custom_segments_field}}</td>
+            </tr>
+          </tbody>
+        </table>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <h5>Total Targetable Available</h5>
         <hr>
+        <label>Age</label>
+        <input type="checkbox" name="">{{customSegementForm.ageGroup[0].age}}
+         <input type="checkbox" name="">{{customSegementForm.ageGroup[1].age}}
+          <input type="checkbox" name="">{{customSegementForm.ageGroup[2].age}}
+           <input type="checkbox" name="">{{customSegementForm.ageGroup[3].age}}
+            <input type="checkbox" name="">{{customSegementForm.ageGroup[4].age}}
+             <input type="checkbox" name="">{{customSegementForm.ageGroup[5].age}}
+              <input type="checkbox" name="">{{customSegementForm.ageGroup[6].age}}
+        <br>
+        <label>Gender</label>
+        <input type="checkbox" name="">{{customSegementForm.gender[0].gender}}
+         <input type="checkbox" name="">{{customSegementForm.gender[1].gender}}
+          <input type="checkbox" name="">{{customSegementForm.gender[2].gender}}
+        <br>
+        <label>Language</label>
+        <select>
+          <option>Select</option>
+          <option ng-repeat="lang in customSegementForm.language">{{lang.language}}</option>
+        </select>
+        <br>
+        <label>Category</label>
+        <select>
+          <option>Select</option>
+          <option ng-repeat="lang in customSegementForm.language">{{lang.language}}</option>
+        </select>
+        <br>
+        <label>Loaction</label>
+        <select>
+          <option>Select</option>
+          <option ng-repeat="lang in customSegementForm.language">{{lang.language}}</option>
+        </select>
     </div>
     <hr>
-    <div class="pull-right">
+    <div>
         <button class="btn btn-default" type="button" ng-click="audienceCancel()">Cancel</button>
         <button class="btn btn-primary" type="button" ng-click="savedAudience(segment)">Save Audience</button> 
     </div>

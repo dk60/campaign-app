@@ -1,40 +1,55 @@
-app.service('audienceService', function ($rootScope, $http, BaseURL,$window) {
+app.service('audienceService', function ($rootScope, $http, shareBaseUrl,$window) {
     var params = {};
-    var token = $window.localStorage.accessToken;
-    var userId = $window.localStorage.userId;
-
-
+    
     this.getAudienceSegement = function () {
-        params.token = token;
-        params.userId = userId;
-        var promise = $http.get(BaseURL + 'getAudienceSegement', {params} ).then(function(response) {
+        params = shareBaseUrl.BaseUrl();
+        var promise = $http.get(params.BaseUrl + 'getAudienceSegement', {params} ).then(function(response) {
                 return response.data;
             });
             return promise;
         };
 
     this.postAudienceSegement = function (params) {
-        params.token = token;
-        params.userId = userId;
-        var promise = $http.post(BaseURL + 'audienceSegement', {params} ).then(function(response) {
+        params.acess = shareBaseUrl.BaseUrl();
+        params = params;
+        var promise = $http.post(params.acess.BaseUrl + 'audienceSegement', {params} ).then(function(response) {
                 return response;
             });
             return promise;
         };
     this.editAudienceSegement = function(params){
-        params.token = token;
-        params.userId = userId;
-        var promise = $http.post(BaseURL + 'editAudienceSegement', {params} ).then(function(response) {
+        params.acess = shareBaseUrl.BaseUrl();
+        params = params;
+        var promise = $http.post(params.acess.BaseUrl + 'editAudienceSegement', {params} ).then(function(response) {
                 return response;
             });
             return promise;
         };
 
     this.deleteAudienceSegement = function(params){
-        params.token = token;
-        params.userId = userId;
-        var promise = $http.post(BaseURL + 'deleteAudienceSegement', {params} ).then(function(response) {
+        params.acess = shareBaseUrl.BaseUrl();
+        params = params;
+        var promise = $http.post(params.acess.BaseUrl + 'deleteAudienceSegement', {params} ).then(function(response) {
                 return response;
+            });
+            return promise;
+        };
+
+    this.getCustomSegmentsFields = function(){
+        params.acess = shareBaseUrl.BaseUrl();
+        params = params;
+        var promise = $http.get(params.acess.BaseUrl + 'getCustomSegmentsFields', {params} ).then(function(response) {
+                return response.data;
+            });
+            return promise;
+        };
+
+    this.getCustomNewSegment = function () {
+        params.acess = shareBaseUrl.BaseUrl();
+        params = params;
+        params.segment_id = 1;
+        var promise = $http.get(params.acess.BaseUrl + 'getCustomNewSegmentsForm', {params} ).then(function(response) {
+                return response.data;
             });
             return promise;
         };

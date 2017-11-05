@@ -32,6 +32,12 @@ app.use(function (req, res, next) {
     var token = req.query.token || req.body.params.token;
     
     if (token) {
+      if (req.query.token) {
+        delete req.query.token;
+      }
+      else if(req.body.params.token){
+        delete req.body.params.token;
+      }
         next();
     } else {
         return res.json({

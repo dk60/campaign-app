@@ -4,9 +4,13 @@ var apiControllerRequest = require('../models/apiController');
 
 router.get('/getAudienceSegement', function(req,res){
     apiControllerRequest.getAudienceSegementData(function(err,rows){
-        if(err)
+        if(!rows[0])
         {
-        res.json(err);
+        res.json({
+                data : [],
+                code: 500,
+                status: false,
+                message: "API Not Successful"});
         }
         else
         {
@@ -41,9 +45,13 @@ router.post('/audienceSegement',function(req,res,next){
         status : req.body.params.status
     }
     apiControllerRequest.insertAudienceSegementData(segement,function(err,count){
-        if(err)
+        if(!rows[0])
         {
-            res.json(err);
+            res.json({
+                    data : [],
+                    code: 500,
+                    status: false,
+                    message: "API Not Successful"});
         }
         else{
             res.json(req.body);
@@ -57,9 +65,13 @@ router.post('/editAudienceSegement',function(req,res,next){
         segment_form_data : req.body.params.segment_form_data
     }
     apiControllerRequest.updateAudienceSegementData(audienceSegement,function(err,count){
-        if(err)
+        if(!rows[0])
         {
-            res.json(err);
+            res.json({
+                    data : [],
+                    code: 500,
+                    status: false,
+                    message: "API Not Successful"});
         }
         else
         {
@@ -69,9 +81,13 @@ router.post('/editAudienceSegement',function(req,res,next){
 });
 router.post('/deleteAudienceSegement',function(req,res,next){
     apiControllerRequest.deleteAudienceSegementData(req.body.params.seg_id,function(err,rows){
-        if(err)
+        if(!rows[0])
         {
-            res.json(err);
+            res.json({
+                    data : [],
+                    code: 500,
+                    status: false,
+                    message: "API Not Successful"});
         }
         else
         {
@@ -79,4 +95,83 @@ router.post('/deleteAudienceSegement',function(req,res,next){
         }
     });
 });
+
+router.get('/getCustomSegmentsFields',function(req,res,next){
+    apiControllerRequest.getCustomSegmentsFields(function(err,rows){
+        if(!rows[0])
+        {
+            res.json({
+                    data : [],
+                    code: 500,
+                    status: false,
+                    message: "API Not Successful"});
+        }
+        else
+        {
+            res.json({
+                    data : rows,
+                    code: 500,
+                    status: false,
+                    message: "API Not Successful"});
+        }
+    });
+});
+
+router.get('/getCustomNewSegmentsForm', function(req,res,next){
+    var ageGroupParam = 1;
+    apiControllerRequest.getCustomNewSegmentsForm(ageGroupParam, function(err, rows){
+        if(!rows[0])
+        {
+            res.json({
+                    data : [],
+                    code: 500,
+                    status: false,
+                    message: "API Not Successful"});
+        }
+        else
+        {
+            var ageGroupData = rows[0]
+            var genderParam = 2;
+            apiControllerRequest.getCustomNewSegmentsForm(genderParam, function(err, rows){
+                if(!rows[0])
+                {
+                    res.json({
+                        data : [],
+                        code: 500,
+                        status: false,
+                        message: "API Not Successful"});
+                }
+                else
+                {
+                    var genderData = rows[0]
+                    var languageParam = 3;
+                     apiControllerRequest.getCustomNewSegmentsForm(languageParam, function(err,rows){
+                        if(!rows[0])
+                        {
+                            res.json({
+                                    data : [],
+                                    code: 500,
+                                    status: false,
+                                    message: "API Not Successful"});
+                        }
+                        else
+                        {
+                            var jsnData = {
+                                ageGroup : ageGroupData,
+                                gender : genderData,
+                                language : rows[0]
+                            }
+                            res.json({
+                                data : jsnData,
+                                code: 200,
+                                status: "Success",
+                                message: "API Successful"});
+                        }
+                    });
+                }
+            })
+        }
+    })
+});
+
 module.exports = router;

@@ -72,6 +72,18 @@ app.controller('CampaignController',['$scope','campaignFactory','campaignChanelF
         });
     };
 
+    $scope.getCustomSegmentsFields = function(){
+        return audienceFactory.getCustomSegmentsFields().then(function(response, status){
+            $scope.customFormFields = response;
+        });
+    };
+
+    $scope.getCustomNewSegments = function(){
+        return audienceFactory.getCustomNewSegments().then(function(response, status){
+            $scope.customSegementForm = response;
+        });
+    };
+
     $scope.deleteAudienceSegement = function(chenel){
         return audienceFactory.deleteAudienceSegement(chenel).then(function(response,status){
             $scope.getAudienceSegement();

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var apiControllerRequest = require('../models/apiController');
 
-router.post('/getCampaignChannel', function(req,res){
+router.get('/getCampaignChannel', function(req,res){
     apiControllerRequest.getChannel(function(err,rows){
         if(err)
         {

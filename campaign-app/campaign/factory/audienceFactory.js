@@ -30,6 +30,48 @@
 	            return response.data;
 	        });
 	    };
+
+	    dataFactory.getCustomSegmentsFields = function(){
+	    	return audienceService.getCustomSegmentsFields().then(function(response, status){
+	    		return response.data;
+	    	});
+	    };
+
+	    dataFactory.getCustomNewSegments = function(params){
+	    	var customNewSegments = {
+
+				ageGroup : [],
+				gender : [],
+				language : []
+			}
+        return audienceService.getCustomNewSegment(params).then(function(response, status){
+            	angular.forEach( response.data.ageGroup, function(value, key){
+					if (value.custom_seg_ref_id == 1) {
+						customNewSegments.ageGroup.push({
+							'age_id' : value.age_id,
+							'age' : value.age_group
+						})
+					}
+				});
+				angular.forEach(response.data.gender , function(value, key){
+					if (value.custom_seg_ref_id == 1) {
+						customNewSegments.gender.push({
+							'gender_id' : value.gender_id,
+							'gender' : value.gender
+						})
+					}
+				});
+				angular.forEach(response.data.language , function(value, key){
+					if (value.custom_seg_ref_id == 1) {
+						customNewSegments.language.push({
+							'lag_id' : value.lag_id,
+							'language' : value.language
+						})
+					}
+				});
+			    return customNewSegments;
+			});
+	    };
 		
 		return dataFactory;
  }]);
