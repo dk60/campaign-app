@@ -44,8 +44,8 @@ router.post('/audienceSegement',function(req,res,next){
         update_date : req.body.params.update_date,
         status : req.body.params.status
     }
-    apiControllerRequest.insertAudienceSegementData(segement,function(err,count){
-        if(!rows[0])
+    apiControllerRequest.insertAudienceSegementData(segement,function(err,rows){
+        if(err)
         {
             res.json({
                     data : [],
@@ -64,8 +64,8 @@ router.post('/editAudienceSegement',function(req,res,next){
         segement_name : req.body.params.segement_name,
         segment_form_data : req.body.params.segment_form_data
     }
-    apiControllerRequest.updateAudienceSegementData(audienceSegement,function(err,count){
-        if(!rows[0])
+    apiControllerRequest.updateAudienceSegementData(audienceSegement,function(err,rows){
+        if(err)
         {
             res.json({
                     data : [],
@@ -81,7 +81,7 @@ router.post('/editAudienceSegement',function(req,res,next){
 });
 router.post('/deleteAudienceSegement',function(req,res,next){
     apiControllerRequest.deleteAudienceSegementData(req.body.params.seg_id,function(err,rows){
-        if(!rows[0])
+        if(err)
         {
             res.json({
                     data : [],

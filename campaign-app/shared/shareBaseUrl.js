@@ -1,7 +1,7 @@
 app.service('shareBaseUrl', function ($window) {
 
     return {
-        BaseUrl: function (month,year) {
+        BaseUrl: function () {
             var params = {};
                 params.token = $window.localStorage.accessToken;
                 params.userId = $window.localStorage.userId;

@@ -29,14 +29,14 @@ app.use(function (req, res, next) {
           return next();
       }
 
-    var token = req.query.token || req.body.params.token;
+    var token = req.query.token || req.body.params.acess.token;
     
     if (token) {
       if (req.query.token) {
         delete req.query.token;
       }
-      else if(req.body.params.token){
-        delete req.body.params.token;
+      else if(req.body.params.acess.token){
+        delete req.body.params.acess;
       }
         next();
     } else {
